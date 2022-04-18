@@ -1,4 +1,4 @@
-VERSION = 0.01
+VERSION = 0.001
 
 import socket
 from os import remove
@@ -14,6 +14,9 @@ from bs4 import BeautifulSoup
 #     rotate_screen  = rotatescreen.get_primary_display()
 #     rotate_screen.set_landscape_flipped()
 
+YES = ['y', 'Y', 'YES', 'yes', 'Yes']
+
+NO = ['n', 'N', 'NO', 'no', 'No']
 
 github_url = 'https://github.com/ZingKidd/VanillaRat/blob/main/main.py'
 
@@ -65,15 +68,27 @@ def check_alive_drives(drives):
 def chrome_history():
     pass
 
-def update(github_url):
+def check_for_update(github_url):
     html_text = r.get(github_url).text
     soup = BeautifulSoup(html_text, 'html.parser')
     latest_versions_location = soup.find_all('span', {"class":"pl-c1"})
     # print(searchfor[1])
     for i in latest_versions_location[1]:
         latest_version = float(i)
-        print(latest_version)
+        # print(latest_version)
         if VERSION < latest_version:
-            print('Updating...')
+            print('There is an available Update')
+            update()
         else:
             print('You are fine!')
+
+def update():
+    update_option = input('Would you like to Update Vanilla? [y/N] ')
+    if update_option in YES:
+        print('Updating . . .')
+        # os.system()
+    elif update_option in NO:
+        return
+    else:
+        print('Something went wrong...')
+        update()
