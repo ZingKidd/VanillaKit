@@ -2,7 +2,6 @@ import socket
 from os import remove
 from sys import argv
 import os
-from time import sleep
 import webbrowser
 
 #import rotatescreen
