@@ -1,3 +1,5 @@
+VERSION = 0.01
+
 import socket
 from os import remove
 from sys import argv
@@ -10,7 +12,7 @@ import platform
 #     rotate_screen  = rotatescreen.get_primary_display()
 #     rotate_screen.set_landscape_flipped()
 
-VERSION = 0.01
+
 
 drives = ["A:\\", "B:\\","C:\\","D:\\","E:\\","F:\\","G:\\","H:\\","I:\\","J:\\","K:\\","L:\\","M:\\","N:\\","O:\\","P:\\","Q:\\","R:\\","S:\\","T:\\","U:\\","V:\\","W:\\","X:\\","Y:\\","Z:\\"]
 
