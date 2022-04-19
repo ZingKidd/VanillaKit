@@ -16,7 +16,7 @@ YES = ['y', 'Y', 'YES', 'yes', 'Yes']
 
 NO = ['n', 'N', 'NO', 'no', 'No']
 
-github_url = 'https://github.com/ZingKidd/Vanilla/blob/main/main.py'
+URL = 'https://github.com/ZingKidd/Vanilla/blob/main/main.py'
 
 DRIVES = ["A:\\", "B:\\","C:\\","D:\\","E:\\","F:\\","G:\\","H:\\","I:\\","J:\\","K:\\","L:\\","M:\\","N:\\","O:\\","P:\\","Q:\\","R:\\","S:\\","T:\\","U:\\","V:\\","W:\\","X:\\","Y:\\","Z:\\"]
 
@@ -76,6 +76,45 @@ def check_for_update(github_url):
             update()
         else:
             print('You are fine!')
+
+def check_for_update_V2(version = VERSION, github_url = URL):
+    result = r.get(github_url)
+    src = result.content
+    soup = BeautifulSoup(src, 'lxml')
+    tds = soup.find_all("td")
+    for td in tds:
+        if "VERSION" in td.text:
+            for span in td:
+                # print(span)
+                for value in span:
+                    latest_version = ""
+                    for i in value:
+                        if i.isdigit() or i == '.':
+                            latest_version = latest_version + i
+                    if latest_version != '':
+                        latest_version = float(latest_version)
+                        if version < latest_version:
+                            print('There is an available Update')
+                            update()
+                        else:
+                            print('You are fine!')
+
+def get_latest_repo_version(version = VERSION, github_url = URL):
+    result = r.get(github_url)
+    src = result.content
+    soup = BeautifulSoup(src, 'lxml')
+    tds = soup.find_all("td")
+    for td in tds:
+        if "VERSION" in td.text:
+            for span in td:
+                # print(span)
+                for value in span:
+                    latest_version = ""
+                    for i in value:
+                        if i.isdigit() or i == '.':
+                            latest_version = latest_version + i
+                    if latest_version != '':
+                        return float(latest_version)
 
 def update():
     update_option = input('Would you like to Update Vanilla? [y/N] ')
