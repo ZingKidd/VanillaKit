@@ -9,7 +9,7 @@ import webbrowser
 import platform
 import requests as r
 from bs4 import BeautifulSoup
-
+from win10toast import ToastNotifier
 
 
 YES = ['y', 'Y', 'YES', 'yes', 'Yes']
@@ -21,6 +21,10 @@ URL = 'https://github.com/ZingKidd/VanillaKit/blob/main/main.py'
 DRIVES = ["A:\\", "B:\\","C:\\","D:\\","E:\\","F:\\","G:\\","H:\\","I:\\","J:\\","K:\\","L:\\","M:\\","N:\\","O:\\","P:\\","Q:\\","R:\\","S:\\","T:\\","U:\\","V:\\","W:\\","X:\\","Y:\\","Z:\\"]
 
 different_extensions = ['.txt', '.docx', '.pdf', '.jpg', '.png', '.jpeg', '.mp4']
+
+def pop_message(title, message):
+    toaster = ToastNotifier()
+    toaster.show_toast(title, message)
 
 def print_os():
     print("OS in my system : ",platform.system())
