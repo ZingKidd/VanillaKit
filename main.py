@@ -78,8 +78,7 @@ def check_for_update(github_url):
         if VERSION < latest_version:
             print('There is an available Update')
             update()
-        else:
-            print('You are fine!')
+            return
 
 def check_for_update_V2(version = VERSION, github_url = URL):
     result = r.get(github_url)
@@ -100,8 +99,7 @@ def check_for_update_V2(version = VERSION, github_url = URL):
                         if version < latest_version:
                             print('There is an available Update')
                             update()
-                        else:
-                            print('You are fine!')
+                            return
 
 def get_latest_repo_version(version = VERSION, github_url = URL):
     result = r.get(github_url)
