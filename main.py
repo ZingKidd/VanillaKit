@@ -12,7 +12,6 @@ import requests as r
 from bs4 import BeautifulSoup
 from win10toast import ToastNotifier
 
-
 YES = ['y', 'Y', 'YES', 'yes', 'Yes']
 
 NO = ['n', 'N', 'NO', 'no', 'No']
@@ -141,8 +140,3 @@ def rotate_screen():
 
 def chrome_history():
     pass
-
-check_for_update()
-
-
-
