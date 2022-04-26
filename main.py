@@ -1,9 +1,10 @@
-VERSION = 0.001
+VERSION = 0.0001
 import subprocess
 import socket
 from os import remove
 from sys import argv
 import os
+import re
 from time import sleep
 import webbrowser
 import platform
@@ -51,7 +52,7 @@ def search_drive_by_extension(drive, extension):
 
 def rick_roll():
     url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-    webbrowser.open(url)
+    webbrowser.open_new_tab(url)
 
 def show_alive_drives(drives = DRIVES):
     for drive in drives:
@@ -67,7 +68,7 @@ def check_alive_drives(drives = DRIVES):
         else:
             print(f"Drive {drive} does not exist")
 
-def check_for_update(github_url):
+def check_for_update(github_url = URL):
     html_text = r.get(github_url).text
     soup = BeautifulSoup(html_text, 'html.parser')
     latest_versions_location = soup.find_all('span', {"class":"pl-c1"})
@@ -122,7 +123,10 @@ def update():
     update_option = input('Would you like to Update Vanilla? [y/N] ')
     if update_option in YES:
         print('Updating . . .')
-        # os.system()
+        # Does not work . . .
+        os.chdir('..')
+        subprocess.run(['rd', '-r', 'VanillaKit'], shell=True)
+        subprocess.run(['git', 'clone', 'https://github.com/ZingKidd/VanillaKit.git'], shell=True)
     elif update_option in NO:
         return
     else:
@@ -137,3 +141,8 @@ def rotate_screen():
 
 def chrome_history():
     pass
+
+check_for_update()
+
+
+
